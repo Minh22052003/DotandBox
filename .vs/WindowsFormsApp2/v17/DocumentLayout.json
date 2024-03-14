@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\TTNT\\BTL\\WindowsFormsApp2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|d:\\ttnt\\btl\\windowsformsapp2\\windowsformsapp2\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,33 +34,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\Player.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\Player.cs",
               "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\Player.cs",
               "RelativeToolTip": "WindowsFormsApp2\\Player.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAkwBgAAAA3AAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAkwA8AAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-14T09:32:56.48Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "main.cs",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\main.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\main.cs",
               "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\main.cs",
               "RelativeToolTip": "WindowsFormsApp2\\main.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAkwEYAAABHAAAA",
+              "ViewState": "AQIAADwAAAAAAAAAAAAAAFMAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-08T05:40:40.314Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "main.cs [Design]",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\main.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\main.cs",

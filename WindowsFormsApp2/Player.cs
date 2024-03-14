@@ -11,6 +11,10 @@ namespace WindowsFormsApp2
     {
         public Player() { }
         public string Name { get; private set; }
+        public void setName(string name)
+        {
+            Name = name;
+        }
         public bool Turn { get; private set; }=false;
         public void setTurn(bool turn)
         {
