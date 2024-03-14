@@ -67,6 +67,11 @@ namespace WindowsFormsApp2
                                 ((Lines)sender).Check = true;
                                 player1.setTurn(true);
                                 player2.setTurn(false);
+                                if (TinhDiem(((Lines)sender)) != 0)
+                                {
+                                    player1.setTurn(false);
+                                    player2.setTurn(true);
+                                }
                                 player1.setScore(TinhDiem(((Lines)sender)));
                                 Score1.Text = player1.Score.ToString();
                                 timer2.Start();
@@ -80,6 +85,11 @@ namespace WindowsFormsApp2
                                 ((Lines)sender).Check = true;
                                 player2.setTurn(true);
                                 player1.setTurn(false);
+                                if (TinhDiem(((Lines)sender)) != 0)
+                                {
+                                    player2.setTurn(false);
+                                    player1.setTurn(true);
+                                }
                                 player2.setScore(TinhDiem(((Lines)sender)));
                                 Score2.Text = player2.Score.ToString();
                                 timer1.Start();
