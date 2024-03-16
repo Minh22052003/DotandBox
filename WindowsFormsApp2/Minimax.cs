@@ -20,7 +20,7 @@ namespace WindowsFormsApp2
         public int startY; // Tọa độ y ban đầu
         public int spacing; // Khoảng cách giữa các điểm
         public int size;//Size trò chơi
-        public int Depth = 2;//Độ sâu duyệt minimax(Số càng cao càng khó nhưng cũng mất nhiều thời gian hơn)
+        public int Depth = 5;//Độ sâu duyệt minimax(Số càng cao càng khó nhưng cũng mất nhiều thời gian hơn)
 
         public Minimax(Board board, int StartX, int StartY, int Spacing, int size)
         {
@@ -326,7 +326,7 @@ namespace WindowsFormsApp2
 
 
         // Minimax Algorithm
-        public int MinimaxAlgorithm(int depth, bool isMaximizing)
+        public int MinimaxAlgorithm(int anpha,int beta, int depth, bool isMaximizing)
         {
             int score = Evaluate(); // Đánh giá điểm số của trạng thái hiện tại
 
@@ -346,12 +346,12 @@ namespace WindowsFormsApp2
                     {
                         scoreAI += TinhDiem(move);
                         // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
-                        currentScore = MinimaxAlgorithm(depth - 1, true);
+                        currentScore = MinimaxAlgorithm(anpha,beta,depth - 1, true);
                     }
                     else
                     {
                         // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
-                        currentScore = MinimaxAlgorithm(depth - 1, false);
+                        currentScore = MinimaxAlgorithm(anpha, beta, depth - 1, false);
                     }
 
                     
@@ -362,9 +362,17 @@ namespace WindowsFormsApp2
                     {
                         scoreAI -= TinhDiem(move);
                     }
-
-                    // Cập nhật điểm số tốt nhất
+                    //CẮT TỈA
+                    // B1:
                     bestScore = Math.Max(bestScore, currentScore);
+                    // B2:
+                    if (bestScore >= beta)
+                    {
+                        return bestScore;
+                    }
+                    // B3:
+                    anpha = Math.Max(anpha, bestScore);
+
                 }
                 return bestScore;
             }
@@ -380,12 +388,12 @@ namespace WindowsFormsApp2
                     {
                         scorePL += TinhDiem(move);
                         // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
-                        currentScore = MinimaxAlgorithm(depth - 1, false);
+                        currentScore = MinimaxAlgorithm(anpha, beta, depth - 1, false);
                     }
                     else
                     {
                         // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
-                        currentScore = MinimaxAlgorithm(depth - 1, true);
+                        currentScore = MinimaxAlgorithm(anpha, beta, depth - 1, true);
                     }
 
                     
@@ -397,8 +405,15 @@ namespace WindowsFormsApp2
                         scorePL -= TinhDiem(move);
                     }
 
-                    // Cập nhật điểm số tốt nhất
+                    // B1:
                     bestScore = Math.Min(bestScore, currentScore);
+                    //B2:
+                    if(bestScore <= anpha)
+                    {
+                        return bestScore;
+                    }
+                    //B3:
+                    beta = Math.Min(beta, bestScore);
                 }
                 return bestScore;
             }
@@ -458,6 +473,8 @@ namespace WindowsFormsApp2
         {
             int bestScore = int.MinValue;
             int currentScore = 0;
+            int anpha = int.MinValue;
+            int beta = int.MaxValue;
             Lines bestMove = null;
             foreach (var move in GetPossibleMoves())
             {
@@ -466,11 +483,11 @@ namespace WindowsFormsApp2
                 if (TinhDiem(move) != 0)
                 {
                     scoreAI += TinhDiem(move);
-                    currentScore = MinimaxAlgorithm(Depth, true);
+                    currentScore = MinimaxAlgorithm(anpha, beta, Depth, true);
                 }
                 else
                 {
-                    currentScore = MinimaxAlgorithm(Depth, false);
+                    currentScore = MinimaxAlgorithm(anpha, beta, Depth, false);
                 }
 
                 UndoMove(move);
