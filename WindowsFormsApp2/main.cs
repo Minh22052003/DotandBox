@@ -14,7 +14,7 @@ namespace WindowsFormsApp2
 {
 	public partial class main : Form
 	{
-        public bool mode = true;
+        public bool mode = false;
 		private List<Lines> lines = new List<Lines>();
         public Player player1 = new Player();
         public Player player2 = new Player();
@@ -28,7 +28,6 @@ namespace WindowsFormsApp2
 			this.BackColor = Color.LightSkyBlue;
 			
 
-			// Tạo các đường nối theo hàng
 			for (int i = 0; i < size+1; i++)
 			{
 				for (int j = 0; j < size; j++)
@@ -39,7 +38,6 @@ namespace WindowsFormsApp2
 				}
 			}
 
-			// Tạo các đường nối theo cột
 			for (int i = 0; i < size+1; i++)
 			{
 				for (int j = 0; j < size; j++)
@@ -49,22 +47,19 @@ namespace WindowsFormsApp2
 					lines.Add(new Lines(point1, point2));
 				}
 			}
-			AssignClickEvents();
+            if (!mode)
+            {
+                foreach (var line in lines)
+                {
+                    line.Click += LineClickHandler;
+                }
+            }
+            
+            AssignClickEvents();
 
 		}
         public Board board;
         public Minimax mnm;
-        private bool GameOver()
-        {
-            foreach (var x in lines)
-            {
-                if (x.Check != true)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
         private void AssignClickEvents()
         {
             if (mode)
@@ -118,72 +113,69 @@ namespace WindowsFormsApp2
                     };
                 }
             }
-            else
+            else//bug
             {
-                while (GameOver())
-                {
-                    for (int i = 0; i < lines.Count; i++)
-                {
-                    lines[i].Click += (sender, args) =>
-                    {
-                        Lines clickedLine = (Lines)sender;
-
-                        if (!clickedLine.Check)
-                        {
-                            // Lượt đi của người
-                            if (player1.Turn == false)
-                            {
-                                clickedLine.ChangeColor(Color.Blue);
-                                clickedLine.ChangeDash(DashStyle.Solid);
-                                clickedLine.Check = true;
-                                player1.setTurn(true);
-                                player2.setTurn(false);
-                                if (TinhDiem(clickedLine) != 0)
-                                {
-                                    player1.setTurn(false);
-                                    player2.setTurn(true);
-                                    timer2.Stop();
-                                }
-                                player1.setScore(TinhDiem(clickedLine));
-                                Score1.Text = player1.Score.ToString();
-                                timer2.Start();
-                                timeE2.Text = player2.timeEnd.ToString();
-                                board = new Board(lines, int.Parse(Score2.Text), int.Parse(Score1.Text));
-                                Invalidate();
-                            }
-                            // Lượt đi của máy
-                            else if (player2.Turn == false)
-                            {
-                                mnm = new Minimax(board, startX, startY, spacing, size);
-                                Lines bestMove = mnm.GetBestMove();
-                                MessageBox.Show(bestMove.Point1.X.ToString());
-                                bestMove.ChangeColor(Color.Red);
-                                bestMove.ChangeDash(DashStyle.Solid);
-                                bestMove.Check = true;
-                                player2.setTurn(true);
-                                player1.setTurn(false);
-
-                                if (TinhDiem(bestMove) != 0)
-                                {
-                                    player2.setTurn(false);
-                                    player1.setTurn(true);
-                                    timer1.Stop();
-                                }
-                                player2.setScore(TinhDiem(bestMove));
-                                Score2.Text = player2.Score.ToString();
-                                timer1.Start();
-                                timeE1.Text = player1.timeEnd.ToString();
-                                Invalidate();
-                            }
-                        }
-                    };
-                }
-                }
                 
-
-
             }
 
+        }
+        private bool nextMoveByComputer = false;
+
+        void LineClickHandler(object sender, EventArgs e)
+        {
+            Lines clickedLine = (Lines)sender;
+            if (!clickedLine.Check)
+            {
+                if (player1.Turn == false)
+                {
+                    clickedLine.ChangeColor(Color.Blue);
+                    clickedLine.ChangeDash(DashStyle.Solid);
+                    clickedLine.Check = true;
+                    player1.setTurn(true);
+                    player2.setTurn(false);
+                    nextMoveByComputer = true;
+                    if (TinhDiem(clickedLine) != 0)
+                    {
+                        player1.setTurn(false);
+                        player2.setTurn(true);
+                        nextMoveByComputer = false;
+                        timer2.Stop();
+                    }
+                    player1.setScore(TinhDiem(clickedLine));
+                    Score1.Text = player1.Score.ToString();
+                    timer2.Start();
+                    timeE2.Text = player2.timeEnd.ToString();
+                    Invalidate();
+                    
+                }
+            }
+        }
+
+
+        private void MakeComputerMove()
+        {
+            board = new Board(lines, int.Parse(Score2.Text), int.Parse(Score1.Text));
+            mnm = new Minimax(board, startX, startY, spacing, size);
+            Lines bestMove = mnm.GetBestMove();
+            int bestMoveIndex = lines.FindIndex(line => line == bestMove);
+            lines[bestMoveIndex].ChangeColor(Color.Red);
+            lines[bestMoveIndex].ChangeDash(DashStyle.Solid);
+            lines[bestMoveIndex].Check = true;
+            player2.setTurn(true);
+            player1.setTurn(false);
+            nextMoveByComputer = false;
+            if (TinhDiem(bestMove) != 0)
+            {
+                player2.setTurn(false);
+                player1.setTurn(true);
+                nextMoveByComputer = true;
+                timer1.Stop();
+            }
+            player2.setScore(TinhDiem(lines[bestMoveIndex]));
+            Score2.Text = player2.Score.ToString();
+            timer1.Start();
+            timeE1.Text = player1.timeEnd.ToString();
+            Invalidate();
         }
 
         private int TinhDiem(Lines line)
@@ -475,31 +467,37 @@ namespace WindowsFormsApp2
 			// Vẽ các đường nối
 			foreach (var line in lines)
 			{
-                // Vẽ đường nối
                 Pen pen = new Pen(line.Color);
                 pen.DashStyle=line.dashStyle;
 				e.Graphics.DrawLine(pen, line.Point1, line.Point2);
 				pen.Dispose();
 
-				// Vẽ các chấm tròn ở hai đầu của đường nối
 				int circleRadius = 10;
 				e.Graphics.FillEllipse(Brushes.Black, line.Point1.X - circleRadius / 2, line.Point1.Y - circleRadius / 2, circleRadius, circleRadius);
 				e.Graphics.FillEllipse(Brushes.Black, line.Point2.X - circleRadius / 2, line.Point2.Y - circleRadius / 2, circleRadius, circleRadius);
 			}
 		}
+        
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
 
-		protected override void OnMouseDown(MouseEventArgs e)
-		{
-			base.OnMouseDown(e);
+            // Kiểm tra xem có điểm nào được click trong các đường nối không
+            foreach (var line in lines)
+            {
+                line.HandleClick(e.Location);
+            }
 
-			// Kiểm tra xem có điểm nào được click trong các đường nối không
-			foreach (var line in lines)
-			{
-				line.HandleClick(e.Location);
-			}
-		}
+            // Nếu biến flag được đặt thành true, gọi MakeComputerMove và đặt lại biến flag
+            if (nextMoveByComputer)
+            {
+                MakeComputerMove();
+                
+            }
+        }
 
-		private void Click_Exit(object sender, EventArgs e)
+
+        private void Click_Exit(object sender, EventArgs e)
 		{
 			this.Close();
 		}
@@ -512,6 +510,18 @@ namespace WindowsFormsApp2
         private void timer2_Tick(object sender, EventArgs e)
         {
             player2.setTimeEnd(player2.timeEnd - 1);
+        }
+
+        private bool GameOver()
+        {
+            foreach (var x in lines)
+            {
+                if (x.Check == false)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

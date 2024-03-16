@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.AxHost;
 
 namespace WindowsFormsApp2
@@ -467,30 +468,25 @@ namespace WindowsFormsApp2
                 if (TinhDiem(move) != 0)
                 {
                     scoreAI += TinhDiem(move);
-                    // Gọi thuật toán Minimax để tính toán điểm số cho nước đi tiếp theo
-                    currentScore = MinimaxAlgorithm(5, true); // Độ sâu của cây tìm kiếm
+                    currentScore = MinimaxAlgorithm(3, true);
                 }
                 else
                 {
-                    // Gọi thuật toán Minimax để tính toán điểm số cho nước đi tiếp theo
-                    currentScore = MinimaxAlgorithm(5, false); // Độ sâu của cây tìm kiếm
+                    currentScore = MinimaxAlgorithm(3, false);
                 }
 
-                
-
-                // Hủy bỏ nước đi
                 UndoMove(move);
                 if (TinhDiem(move) != 0)
                 {
                     scoreAI -= TinhDiem(move);
                 }
 
-                // Cập nhật nước đi tốt nhất
                 if (currentScore > bestScore)
                 {
                     bestScore = currentScore;
                     bestMove = move;
                 }
+
             }
             return bestMove;
         }
