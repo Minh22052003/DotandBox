@@ -7,8 +7,12 @@
       "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\minimax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\minimax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,16 +38,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Player.cs",
-              "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\Player.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp2\\Player.cs",
-              "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\Player.cs",
-              "RelativeToolTip": "WindowsFormsApp2\\Player.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAkwA8AAAAYAAAA",
+              "DocumentIndex": 2,
+              "Title": "Board.cs",
+              "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\Board.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp2\\Board.cs",
+              "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\Board.cs",
+              "RelativeToolTip": "WindowsFormsApp2\\Board.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAkwBQAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T09:32:56.48Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-15T12:26:01.801Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Minimax.cs",
+              "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\Minimax.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp2\\Minimax.cs",
+              "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\Minimax.cs",
+              "RelativeToolTip": "WindowsFormsApp2\\Minimax.cs",
+              "ViewState": "AQIAAD4BAAAAAAAAAAAswJgBAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T05:51:42.887Z"
             },
             {
               "$type": "Document",
@@ -53,14 +68,14 @@
               "RelativeDocumentMoniker": "WindowsFormsApp2\\main.cs",
               "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\main.cs",
               "RelativeToolTip": "WindowsFormsApp2\\main.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAmwFcAAABDAAAA",
+              "ViewState": "AQIAADEAAAAAAAAAAADwv0MAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-08T05:40:40.314Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "main.cs [Design]",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\main.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\main.cs",

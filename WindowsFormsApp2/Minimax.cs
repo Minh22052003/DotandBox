@@ -1,207 +1,53 @@
-﻿using LineConnectionApp;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 namespace WindowsFormsApp2
 {
-	public partial class main : Form
-	{
-        public bool mode = true;
-		private List<Lines> lines = new List<Lines>();
-        public Player player1 = new Player();
-        public Player player2 = new Player();
-        public int startX = 180; // Tọa độ x ban đầu
-        public int startY = 130; // Tọa độ y ban đầu
-        public int spacing = 70; // Khoảng cách giữa các điểm
-        public int size = 3;//Size trò chơi
-        public main()
-		{
-			InitializeComponent();
-			this.BackColor = Color.LightSkyBlue;
-			
+    public class Minimax
+    {
+        public Board board;// Trạng thái hiện tại của trò chơi
+        public List<Lines> lines ;
+        public int scoreAI;
+        public int scorePL;
+        public int startX; // Tọa độ x ban đầu
+        public int startY; // Tọa độ y ban đầu
+        public int spacing; // Khoảng cách giữa các điểm
+        public int size;//Size trò chơi
 
-			// Tạo các đường nối theo hàng
-			for (int i = 0; i < size+1; i++)
-			{
-				for (int j = 0; j < size; j++)
-				{
-					Point point1 = new Point(startX + j * spacing, startY + i * spacing);
-					Point point2 = new Point(startX + (j + 1) * spacing, startY + i * spacing);
-					lines.Add(new Lines(point1, point2));
-				}
-			}
-
-			// Tạo các đường nối theo cột
-			for (int i = 0; i < size+1; i++)
-			{
-				for (int j = 0; j < size; j++)
-				{
-					Point point1 = new Point(startX + i * spacing, startY + j * spacing);
-					Point point2 = new Point(startX + i * spacing, startY + (j + 1) * spacing);
-					lines.Add(new Lines(point1, point2));
-				}
-			}
-			AssignClickEvents();
-
-		}
-        public Board board;
-        public Minimax mnm;
-        private bool GameOver()
+        public Minimax(Board board, int StartX, int StartY, int Spacing, int size)
         {
-            foreach (var x in lines)
-            {
-                if (x.Check != true)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        private void AssignClickEvents()
-        {
-            if (mode)
-            {
-                for (int i = 0; i < lines.Count; i++)
-                {
-                    lines[i].Click += (sender, args) =>
-                    {
-                        if (!((Lines)sender).Check)
-                        {
-                            if (player1.Turn == false)
-                            {
-                                ((Lines)sender).ChangeColor(Color.Blue);
-                                ((Lines)sender).ChangeDash(DashStyle.Solid);
-                                ((Lines)sender).Check = true;
-                                player1.setTurn(true);
-                                player2.setTurn(false);
-                                if (TinhDiem(((Lines)sender)) != 0)
-                                {
-                                    player1.setTurn(false);
-                                    player2.setTurn(true);
-                                    timer2.Stop();
-                                }
-                                player1.setScore(TinhDiem(((Lines)sender)));
-                                Score1.Text = player1.Score.ToString();
-                                timer2.Start();
-                                timeE2.Text = player2.timeEnd.ToString();
-                                Invalidate();
-                            }
-                            else if (player2.Turn == false)
-                            {
-                                ((Lines)sender).ChangeColor(Color.Red);
-                                ((Lines)sender).ChangeDash(DashStyle.Solid);
-                                ((Lines)sender).Check = true;
-                                player2.setTurn(true);
-                                player1.setTurn(false);
-                                
-                                if (TinhDiem(((Lines)sender)) != 0)
-                                {
-                                    player2.setTurn(false);
-                                    player1.setTurn(true);
-                                    timer1.Stop();
-                                }
-                                player2.setScore(TinhDiem(((Lines)sender)));
-                                Score2.Text = player2.Score.ToString();
-                                timer1.Start();
-                                timeE1.Text = player1.timeEnd.ToString();
-                                Invalidate();
-                            }
-                        }
-                    };
-                }
-            }
-            else
-            {
-                while (GameOver())
-                {
-                    for (int i = 0; i < lines.Count; i++)
-                {
-                    lines[i].Click += (sender, args) =>
-                    {
-                        Lines clickedLine = (Lines)sender;
-
-                        if (!clickedLine.Check)
-                        {
-                            // Lượt đi của người
-                            if (player1.Turn == false)
-                            {
-                                clickedLine.ChangeColor(Color.Blue);
-                                clickedLine.ChangeDash(DashStyle.Solid);
-                                clickedLine.Check = true;
-                                player1.setTurn(true);
-                                player2.setTurn(false);
-                                if (TinhDiem(clickedLine) != 0)
-                                {
-                                    player1.setTurn(false);
-                                    player2.setTurn(true);
-                                    timer2.Stop();
-                                }
-                                player1.setScore(TinhDiem(clickedLine));
-                                Score1.Text = player1.Score.ToString();
-                                timer2.Start();
-                                timeE2.Text = player2.timeEnd.ToString();
-                                board = new Board(lines, int.Parse(Score2.Text), int.Parse(Score1.Text));
-                                Invalidate();
-                            }
-                            // Lượt đi của máy
-                            else if (player2.Turn == false)
-                            {
-                                mnm = new Minimax(board, startX, startY, spacing, size);
-                                Lines bestMove = mnm.GetBestMove();
-                                MessageBox.Show(bestMove.Point1.X.ToString());
-                                bestMove.ChangeColor(Color.Red);
-                                bestMove.ChangeDash(DashStyle.Solid);
-                                bestMove.Check = true;
-                                player2.setTurn(true);
-                                player1.setTurn(false);
-
-                                if (TinhDiem(bestMove) != 0)
-                                {
-                                    player2.setTurn(false);
-                                    player1.setTurn(true);
-                                    timer1.Stop();
-                                }
-                                player2.setScore(TinhDiem(bestMove));
-                                Score2.Text = player2.Score.ToString();
-                                timer1.Start();
-                                timeE1.Text = player1.timeEnd.ToString();
-                                Invalidate();
-                            }
-                        }
-                    };
-                }
-                }
-                
-
-
-            }
-
+            this.board = board;
+            lines = board.lines;
+            scoreAI = board.aiscore;
+            scorePL = board.playerscore;
+            startX = StartX;
+            startY = StartY;
+            spacing = Spacing;
+            this.size = size;
         }
 
         private int TinhDiem(Lines line)
-		{
+        {
             int SoDiem = 0;
-			//Kiem tra truong hop nam sat canh ben trai
-			if(line.Point1.X == line.Point2.X && line.Point1.X == startX)
+            //Kiem tra truong hop nam sat canh ben trai
+            if (line.Point1.X == line.Point2.X && line.Point1.X == startX)
             {
                 bool check1 = false, check2 = false, check3 = false;
                 foreach (var x in lines)
-				{
-					if((x.Point1.X == line.Point1.X && x.Point1.Y == line.Point1.Y) && (x.Point2.X == (line.Point1.X+spacing) && x.Point2.Y == line.Point1.Y))
-					{
-						if (x.Check == true)
-						{
-							check1 = true;
-						}
-					}
+                {
+                    if ((x.Point1.X == line.Point1.X && x.Point1.Y == line.Point1.Y) && (x.Point2.X == (line.Point1.X + spacing) && x.Point2.Y == line.Point1.Y))
+                    {
+                        if (x.Check == true)
+                        {
+                            check1 = true;
+                        }
+                    }
                     if ((x.Point1.X == (line.Point1.X + spacing) && x.Point1.Y == line.Point1.Y) && (x.Point2.X == (line.Point2.X + spacing) && x.Point2.Y == line.Point2.Y))
                     {
                         if (x.Check == true)
@@ -217,11 +63,11 @@ namespace WindowsFormsApp2
                         }
                     }
                 }
-				if(check1 && check2 && check3)
-				{
-					SoDiem++;
-				}
-			}
+                if (check1 && check2 && check3)
+                {
+                    SoDiem++;
+                }
+            }
             // Kiểm tra trường hợp nằm sát cạnh bên trên
             if (line.Point1.Y == line.Point2.Y && line.Point1.Y == startY)
             {
@@ -266,7 +112,7 @@ namespace WindowsFormsApp2
                 bool check1 = false, check2 = false, check3 = false;
                 foreach (var x in lines)
                 {
-                    if ((x.Point1.X == line.Point1.X && x.Point1.Y == (line.Point1.Y-spacing)) &&
+                    if ((x.Point1.X == line.Point1.X && x.Point1.Y == (line.Point1.Y - spacing)) &&
                         (x.Point2.X == line.Point1.X && x.Point2.Y == line.Point1.Y))
                     {
                         if (x.Check)
@@ -282,7 +128,7 @@ namespace WindowsFormsApp2
                             check2 = true;
                         }
                     }
-                    if ((x.Point1.X == line.Point2.X && x.Point1.Y == (line.Point2.Y-spacing)) &&
+                    if ((x.Point1.X == line.Point2.X && x.Point1.Y == (line.Point2.Y - spacing)) &&
                         (x.Point2.X == line.Point2.X && x.Point2.Y == line.Point2.Y))
                     {
                         if (x.Check)
@@ -305,7 +151,7 @@ namespace WindowsFormsApp2
                 {
                     // Kiểm tra xem các đoạn nối cạnh bên phải đã được chọn hay không
                     if ((x.Point1.X == (line.Point1.X - spacing) && x.Point1.Y == line.Point1.Y) &&
-                        (x.Point2.X == line.Point1.X  && x.Point2.Y == line.Point1.Y))
+                        (x.Point2.X == line.Point1.X && x.Point2.Y == line.Point1.Y))
                     {
                         if (x.Check)
                         {
@@ -336,13 +182,13 @@ namespace WindowsFormsApp2
                 }
             }
             // Kiểm tra trường hợp nằm ngang giữa
-            if(line.Point1.Y==line.Point2.Y && line.Point1.Y != startY && line.Point1.Y != (startY + size * spacing))
+            if (line.Point1.Y == line.Point2.Y && line.Point1.Y != startY && line.Point1.Y != (startY + size * spacing))
             {
                 bool check1 = false, check2 = false, check3 = false, check4 = false, check5 = false, check6 = false;
-                foreach(var x in lines)
+                foreach (var x in lines)
                 {
                     // Kiểm tra xem các đoạn nối cạnh bên phải đã được chọn hay không
-                    if ((x.Point1.X == line.Point1.X && x.Point1.Y == (line.Point1.Y-spacing)) &&
+                    if ((x.Point1.X == line.Point1.X && x.Point1.Y == (line.Point1.Y - spacing)) &&
                         (x.Point2.X == line.Point1.X && x.Point2.Y == line.Point1.Y))
                     {
                         if (x.Check)
@@ -350,15 +196,15 @@ namespace WindowsFormsApp2
                             check1 = true;
                         }
                     }
-                    if ((x.Point1.X == line.Point1.X && x.Point1.Y == (line.Point1.Y-spacing)) &&
-                        (x.Point2.X == line.Point2.X && x.Point2.Y == (line.Point2.Y-spacing)))
+                    if ((x.Point1.X == line.Point1.X && x.Point1.Y == (line.Point1.Y - spacing)) &&
+                        (x.Point2.X == line.Point2.X && x.Point2.Y == (line.Point2.Y - spacing)))
                     {
                         if (x.Check)
                         {
                             check2 = true;
                         }
                     }
-                    if ((x.Point1.X == line.Point2.X && x.Point1.Y == (line.Point2.Y-spacing)) &&
+                    if ((x.Point1.X == line.Point2.X && x.Point1.Y == (line.Point2.Y - spacing)) &&
                         (x.Point2.X == line.Point2.X && x.Point2.Y == line.Point2.Y))
                     {
                         if (x.Check)
@@ -422,7 +268,7 @@ namespace WindowsFormsApp2
                             check2 = true;
                         }
                     }
-                    if ((x.Point1.X ==(line.Point2.X-spacing) && x.Point1.Y == line.Point2.Y) &&
+                    if ((x.Point1.X == (line.Point2.X - spacing) && x.Point1.Y == line.Point2.Y) &&
                         (x.Point2.X == line.Point2.X && x.Point2.Y == line.Point2.Y))
                     {
                         if (x.Check)
@@ -467,51 +313,186 @@ namespace WindowsFormsApp2
 
 
             return SoDiem;
-		}
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			base.OnPaint(e);
-
-			// Vẽ các đường nối
-			foreach (var line in lines)
-			{
-                // Vẽ đường nối
-                Pen pen = new Pen(line.Color);
-                pen.DashStyle=line.dashStyle;
-				e.Graphics.DrawLine(pen, line.Point1, line.Point2);
-				pen.Dispose();
-
-				// Vẽ các chấm tròn ở hai đầu của đường nối
-				int circleRadius = 10;
-				e.Graphics.FillEllipse(Brushes.Black, line.Point1.X - circleRadius / 2, line.Point1.Y - circleRadius / 2, circleRadius, circleRadius);
-				e.Graphics.FillEllipse(Brushes.Black, line.Point2.X - circleRadius / 2, line.Point2.Y - circleRadius / 2, circleRadius, circleRadius);
-			}
-		}
-
-		protected override void OnMouseDown(MouseEventArgs e)
-		{
-			base.OnMouseDown(e);
-
-			// Kiểm tra xem có điểm nào được click trong các đường nối không
-			foreach (var line in lines)
-			{
-				line.HandleClick(e.Location);
-			}
-		}
-
-		private void Click_Exit(object sender, EventArgs e)
-		{
-			this.Close();
-		}
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            player1.setTimeEnd(player1.timeEnd-1);
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        // Hàm tính toán điểm số cho trạng thái hiện tại của trò chơi
+        private int Evaluate()
         {
-            player2.setTimeEnd(player2.timeEnd - 1);
+
+            // Sử dụng giá trị aiScore và playerScore
+            int score = scoreAI - scorePL;
+
+            return score;
+        }
+
+
+        // Minimax Algorithm
+        public int MinimaxAlgorithm(int depth, bool isMaximizing)
+        {
+            int score = Evaluate(); // Đánh giá điểm số của trạng thái hiện tại
+
+            // Nếu đạt đến node lá hoặc trò chơi đã kết thúc, trả về điểm số
+            if (depth == 0 || GameOver())
+                return score;
+
+            if (isMaximizing)
+            {
+                int bestScore = int.MinValue;
+                int currentScore = 0;
+                foreach (var move in GetPossibleMoves())
+                {
+                    // Thực hiện nước đi
+                    MakeMove(move);
+                    if (TinhDiem(move) != 0)
+                    {
+                        scoreAI += TinhDiem(move);
+                        // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
+                        currentScore = MinimaxAlgorithm(depth - 1, true);
+                    }
+                    else
+                    {
+                        // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
+                        currentScore = MinimaxAlgorithm(depth - 1, false);
+                    }
+
+                    
+
+                    // Hủy bỏ nước đi
+                    UndoMove(move);
+                    if (TinhDiem(move) != 0)
+                    {
+                        scoreAI -= TinhDiem(move);
+                    }
+
+                    // Cập nhật điểm số tốt nhất
+                    bestScore = Math.Max(bestScore, currentScore);
+                }
+                return bestScore;
+            }
+            else
+            {
+                int bestScore = int.MaxValue;
+                int currentScore = 0;
+                foreach (var move in GetPossibleMoves())
+                {
+                    // Thực hiện nước đi
+                    MakeMove(move);
+                    if (TinhDiem(move) != 0)
+                    {
+                        scorePL += TinhDiem(move);
+                        // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
+                        currentScore = MinimaxAlgorithm(depth - 1, false);
+                    }
+                    else
+                    {
+                        // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
+                        currentScore = MinimaxAlgorithm(depth - 1, true);
+                    }
+
+                    
+
+                    // Hủy bỏ nước đi
+                    UndoMove(move);
+                    if (TinhDiem(move) != 0)
+                    {
+                        scorePL -= TinhDiem(move);
+                    }
+
+                    // Cập nhật điểm số tốt nhất
+                    bestScore = Math.Min(bestScore, currentScore);
+                }
+                return bestScore;
+            }
+        }
+
+        // Kiểm tra xem trò chơi đã kết thúc chưa
+        private bool GameOver()
+        {
+            foreach(var x in lines)
+            {
+                if (x.Check != true)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Lấy danh sách các nước đi có thể
+        private List<Lines> GetPossibleMoves()
+        {
+            List < Lines > tmp = new List<Lines>();
+            foreach (var x in lines)
+            {
+                if (x.Check != true)
+                {
+                    tmp.Add(x);
+                }
+            }
+            return tmp;
+        }
+
+        // Thực hiện một nước đi
+        private void MakeMove(Lines move)
+        {
+            // Viết mã để thực hiện một nước đi từ trạng thái hiện tại của trò chơi
+            // Thêm đoạn nối vào trạng thái của trò chơi
+            move.ChangeColor(Color.Red);
+            move.ChangeDash(DashStyle.Solid);
+            move.Check = true;
+            lines.Add(move);
+        }
+
+        // Hủy bỏ một nước đi
+        private void UndoMove(Lines move)
+        {
+            // Viết mã để hủy bỏ một nước đi từ trạng thái hiện tại của trò chơi
+            // Xóa đoạn nối khỏi trạng thái của trò chơi
+            move.ChangeColor(Color.Black);
+            move.ChangeDash(DashStyle.Dash);
+            move.Check = false;
+            lines.Remove(move);
+        }
+
+        // Chọn nước đi tốt nhất cho máy tính
+        public Lines GetBestMove()
+        {
+            int bestScore = int.MinValue;
+            int currentScore = 0;
+            Lines bestMove = null;
+            foreach (var move in GetPossibleMoves())
+            {
+                // Thực hiện nước đi
+                MakeMove(move);
+                if (TinhDiem(move) != 0)
+                {
+                    scoreAI += TinhDiem(move);
+                    // Gọi thuật toán Minimax để tính toán điểm số cho nước đi tiếp theo
+                    currentScore = MinimaxAlgorithm(5, true); // Độ sâu của cây tìm kiếm
+                }
+                else
+                {
+                    // Gọi thuật toán Minimax để tính toán điểm số cho nước đi tiếp theo
+                    currentScore = MinimaxAlgorithm(5, false); // Độ sâu của cây tìm kiếm
+                }
+
+                
+
+                // Hủy bỏ nước đi
+                UndoMove(move);
+                if (TinhDiem(move) != 0)
+                {
+                    scoreAI -= TinhDiem(move);
+                }
+
+                // Cập nhật nước đi tốt nhất
+                if (currentScore > bestScore)
+                {
+                    bestScore = currentScore;
+                    bestMove = move;
+                }
+            }
+            return bestMove;
         }
     }
 }

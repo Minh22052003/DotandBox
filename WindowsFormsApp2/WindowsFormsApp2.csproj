@@ -52,7 +52,7 @@
     <Compile Include="about.Designer.cs">
       <DependentUpon>about.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Board.cs" />
     <Compile Include="Lines.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
@@ -60,7 +60,7 @@
     <Compile Include="main.Designer.cs">
       <DependentUpon>main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model.cs" />
+    <Compile Include="Minimax.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="setting.Designer.cs">
       <DependentUpon>setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingGame.cs" />
     <Compile Include="start.cs">
       <SubType>Form</SubType>
     </Compile>

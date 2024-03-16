@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp2
 {
-	internal class Class1
-	{
-	}
+    public class SettingGame
+    {
+    }
 }
