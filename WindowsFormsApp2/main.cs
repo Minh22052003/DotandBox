@@ -126,28 +126,18 @@ namespace WindowsFormsApp2
             Lines clickedLine = (Lines)sender;
             if (!clickedLine.Check)
             {
-                if (player1.Turn == false)
+                clickedLine.ChangeColor(Color.Blue);
+                clickedLine.ChangeDash(DashStyle.Solid);
+                clickedLine.Check = true;
+                nextMoveByComputer = true;
+                if (TinhDiem(clickedLine) != 0)
                 {
-                    clickedLine.ChangeColor(Color.Blue);
-                    clickedLine.ChangeDash(DashStyle.Solid);
-                    clickedLine.Check = true;
-                    player1.setTurn(true);
-                    player2.setTurn(false);
-                    nextMoveByComputer = true;
-                    if (TinhDiem(clickedLine) != 0)
-                    {
-                        player1.setTurn(false);
-                        player2.setTurn(true);
-                        nextMoveByComputer = false;
-                        timer2.Stop();
-                    }
-                    player1.setScore(TinhDiem(clickedLine));
-                    Score1.Text = player1.Score.ToString();
-                    timer2.Start();
-                    timeE2.Text = player2.timeEnd.ToString();
-                    Invalidate();
-                    
+                    nextMoveByComputer = false;
                 }
+                player1.setScore(TinhDiem(clickedLine));
+                Score1.Text = player1.Score.ToString();
+                Invalidate();
+                    
             }
         }
 
@@ -161,22 +151,24 @@ namespace WindowsFormsApp2
             lines[bestMoveIndex].ChangeColor(Color.Red);
             lines[bestMoveIndex].ChangeDash(DashStyle.Solid);
             lines[bestMoveIndex].Check = true;
-            player2.setTurn(true);
-            player1.setTurn(false);
             nextMoveByComputer = false;
-            if (TinhDiem(bestMove) != 0)
+            int moveScore = TinhDiem(lines[bestMoveIndex]);
+            if (moveScore != 0 || GameOver())
             {
-                player2.setTurn(false);
-                player1.setTurn(true);
-                nextMoveByComputer = true;
-                timer1.Stop();
+                player2.setScore(moveScore);
+                Score2.Text = player2.Score.ToString();
             }
-            player2.setScore(TinhDiem(lines[bestMoveIndex]));
-            Score2.Text = player2.Score.ToString();
-            timer1.Start();
-            timeE1.Text = player1.timeEnd.ToString();
+            else
+            {
+                nextMoveByComputer = true;
+            }
+            if (moveScore != 0 && !GameOver())
+            {
+                MakeComputerMove();
+            }
             Invalidate();
         }
+
 
         private int TinhDiem(Lines line)
 		{
@@ -495,7 +487,17 @@ namespace WindowsFormsApp2
                 
             }
         }
-
+        private bool GameOver()
+        {
+            foreach (var x in lines)
+            {
+                if (x.Check != true)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         private void Click_Exit(object sender, EventArgs e)
 		{
@@ -511,17 +513,6 @@ namespace WindowsFormsApp2
         {
             player2.setTimeEnd(player2.timeEnd - 1);
         }
-
-        private bool GameOver()
-        {
-            foreach (var x in lines)
-            {
-                if (x.Check == false)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        
     }
 }

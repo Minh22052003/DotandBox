@@ -20,6 +20,7 @@ namespace WindowsFormsApp2
         public int startY; // Tọa độ y ban đầu
         public int spacing; // Khoảng cách giữa các điểm
         public int size;//Size trò chơi
+        public int Depth = 2;//Độ sâu duyệt minimax(Số càng cao càng khó nhưng cũng mất nhiều thời gian hơn)
 
         public Minimax(Board board, int StartX, int StartY, int Spacing, int size)
         {
@@ -319,10 +320,7 @@ namespace WindowsFormsApp2
         // Hàm tính toán điểm số cho trạng thái hiện tại của trò chơi
         private int Evaluate()
         {
-
-            // Sử dụng giá trị aiScore và playerScore
             int score = scoreAI - scorePL;
-
             return score;
         }
 
@@ -433,7 +431,7 @@ namespace WindowsFormsApp2
             return tmp;
         }
 
-        // Thực hiện một nước đi
+        // Thực hiện một nước đi giả định
         private void MakeMove(Lines move)
         {
             // Viết mã để thực hiện một nước đi từ trạng thái hiện tại của trò chơi
@@ -444,7 +442,7 @@ namespace WindowsFormsApp2
             lines.Add(move);
         }
 
-        // Hủy bỏ một nước đi
+        // Hủy bỏ một nước đi giả định
         private void UndoMove(Lines move)
         {
             // Viết mã để hủy bỏ một nước đi từ trạng thái hiện tại của trò chơi
@@ -468,11 +466,11 @@ namespace WindowsFormsApp2
                 if (TinhDiem(move) != 0)
                 {
                     scoreAI += TinhDiem(move);
-                    currentScore = MinimaxAlgorithm(3, true);
+                    currentScore = MinimaxAlgorithm(Depth, true);
                 }
                 else
                 {
-                    currentScore = MinimaxAlgorithm(3, false);
+                    currentScore = MinimaxAlgorithm(Depth, false);
                 }
 
                 UndoMove(move);
