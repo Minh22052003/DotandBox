@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
@@ -30,18 +31,27 @@ namespace WindowsFormsApp2
 		{
 			Click?.Invoke(this, EventArgs.Empty);
 		}
-
-		// Xử lý sự kiện click chuột
-		public void HandleClick(Point location)
+		//Kiểm tra xem đường nào vừa được click thì báo true
+		public bool HandleClick1(Point location)
 		{
+			bool x = false;
 			if (IsClicked(location))
 			{
-				OnClick();
+				x= true;
 			}
-		}
+            return x;
+        }
+        // Xử lý sự kiện click chuột
+        public void HandleClick(Point location)
+        {
+            if (IsClicked(location))
+            {
+                OnClick();
+            }
+        }
 
-		// Kiểm tra xem một điểm có nằm trên đường nối hay không
-		private bool IsClicked(Point point)
+        // Kiểm tra xem một điểm có nằm trên đường nối hay không
+        private bool IsClicked(Point point)
 		{
 			double distance = DistanceToPoint(Point1, Point2, point);
 			return distance < 5;

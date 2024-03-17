@@ -12,15 +12,20 @@ namespace WindowsFormsApp2
 {
 	public partial class start : Form
 	{
+		public SettingGame settingGame = new SettingGame();
 		public start()
 		{
 			InitializeComponent();
+		}
+		public start(SettingGame settingGame)
+		{
+			this.settingGame = settingGame;
 		}
 
 		private void Click_Start(object sender, EventArgs e)
 		{
 			this.Hide();
-			main m = new main();
+			main m = new main(settingGame);
 			m.ShowDialog();
 			m = null;
 			this.Show();
@@ -28,8 +33,7 @@ namespace WindowsFormsApp2
 
 		private void Click_Setting(object sender, EventArgs e)
 		{
-			this.Hide();
-			setting st = new setting();
+			setting st = new setting(settingGame);
 			st.ShowDialog();
 			st = null;
 			this.Show();

@@ -14,21 +14,27 @@ namespace WindowsFormsApp2
 {
 	public partial class main : Form
 	{
-        public bool mode = false;
+        public SettingGame stG;
 		private List<Lines> lines = new List<Lines>();
         public Player player1 = new Player();
         public Player player2 = new Player();
-        public int startX = 180; // Tọa độ x ban đầu
-        public int startY = 130; // Tọa độ y ban đầu
-        public int spacing = 70; // Khoảng cách giữa các điểm
-        public int size = 3;//Size trò chơi
-        public main()
+        public int startX; // Tọa độ x ban đầu
+        public int startY; // Tọa độ y ban đầu
+        public int spacing; // Khoảng cách giữa các điểm
+        public int size;//Size trò chơi
+        public int Depth;//Độ sâu minimax
+        public main(SettingGame stg)
 		{
 			InitializeComponent();
 			this.BackColor = Color.LightSkyBlue;
-			
+            this.stG = stg;
+            startX = stG.startX;
+            startY = stG.startY;
+            spacing = stG.returnSpacing();
+            size = stG.size;
+            Depth = stG.returnDepth();
 
-			for (int i = 0; i < size+1; i++)
+            for (int i = 0; i < size+1; i++)
 			{
 				for (int j = 0; j < size; j++)
 				{
@@ -47,22 +53,25 @@ namespace WindowsFormsApp2
 					lines.Add(new Lines(point1, point2));
 				}
 			}
-            if (!mode)
+            
+            if (stG.mode != "PVP")
             {
                 foreach (var line in lines)
                 {
                     line.Click += LineClickHandler;
                 }
             }
-            
-            AssignClickEvents();
-
+            else
+            {
+                AssignClickEvents();
+            }
 		}
         public Board board;
         public Minimax mnm;
+        private bool nextMoveByComputer = false;
         private void AssignClickEvents()
         {
-            if (mode)
+            if (stG.mode== "PVP")
             {
                 for (int i = 0; i < lines.Count; i++)
                 {
@@ -77,13 +86,13 @@ namespace WindowsFormsApp2
                                 ((Lines)sender).Check = true;
                                 player1.setTurn(true);
                                 player2.setTurn(false);
-                                if (TinhDiem(((Lines)sender)) != 0)
+                                if (Scoring(((Lines)sender)) != 0)
                                 {
                                     player1.setTurn(false);
                                     player2.setTurn(true);
                                     timer2.Stop();
                                 }
-                                player1.setScore(TinhDiem(((Lines)sender)));
+                                player1.setScore(Scoring(((Lines)sender)));
                                 Score1.Text = player1.Score.ToString();
                                 timer2.Start();
                                 timeE2.Text = player2.timeEnd.ToString();
@@ -97,13 +106,13 @@ namespace WindowsFormsApp2
                                 player2.setTurn(true);
                                 player1.setTurn(false);
                                 
-                                if (TinhDiem(((Lines)sender)) != 0)
+                                if (Scoring(((Lines)sender)) != 0)
                                 {
                                     player2.setTurn(false);
                                     player1.setTurn(true);
                                     timer1.Stop();
                                 }
-                                player2.setScore(TinhDiem(((Lines)sender)));
+                                player2.setScore(Scoring(((Lines)sender)));
                                 Score2.Text = player2.Score.ToString();
                                 timer1.Start();
                                 timeE1.Text = player1.timeEnd.ToString();
@@ -113,13 +122,8 @@ namespace WindowsFormsApp2
                     };
                 }
             }
-            else//bug
-            {
-                
-            }
 
         }
-        private bool nextMoveByComputer = false;
 
         void LineClickHandler(object sender, EventArgs e)
         {
@@ -130,11 +134,11 @@ namespace WindowsFormsApp2
                 clickedLine.ChangeDash(DashStyle.Solid);
                 clickedLine.Check = true;
                 nextMoveByComputer = true;
-                if (TinhDiem(clickedLine) != 0)
+                if (Scoring(clickedLine) != 0)
                 {
                     nextMoveByComputer = false;
                 }
-                player1.setScore(TinhDiem(clickedLine));
+                player1.setScore(Scoring(clickedLine));
                 Score1.Text = player1.Score.ToString();
                 Invalidate();
                     
@@ -145,14 +149,14 @@ namespace WindowsFormsApp2
         private void MakeComputerMove()
         {
             board = new Board(lines, int.Parse(Score2.Text), int.Parse(Score1.Text));
-            mnm = new Minimax(board, startX, startY, spacing, size);
+            mnm = new Minimax(board, startX, startY, spacing, size,Depth);
             Lines bestMove = mnm.GetBestMove();
             int bestMoveIndex = lines.FindIndex(line => line == bestMove);
             lines[bestMoveIndex].ChangeColor(Color.Red);
             lines[bestMoveIndex].ChangeDash(DashStyle.Solid);
             lines[bestMoveIndex].Check = true;
             nextMoveByComputer = false;
-            int moveScore = TinhDiem(lines[bestMoveIndex]);
+            int moveScore = Scoring(lines[bestMoveIndex]);
             if (moveScore != 0 || GameOver())
             {
                 player2.setScore(moveScore);
@@ -170,7 +174,7 @@ namespace WindowsFormsApp2
         }
 
 
-        private int TinhDiem(Lines line)
+        private int Scoring(Lines line)
 		{
             int SoDiem = 0;
 			//Kiem tra truong hop nam sat canh ben trai
@@ -473,19 +477,27 @@ namespace WindowsFormsApp2
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-
+            bool check = false;
             // Kiểm tra xem có điểm nào được click trong các đường nối không
             foreach (var line in lines)
             {
+                if (line.HandleClick1(e.Location))
+                {
+                    if (line.Check)
+                    {
+                        check = true;
+                    }
+                }
                 line.HandleClick(e.Location);
-            }
+                
 
-            // Nếu biến flag được đặt thành true, gọi MakeComputerMove và đặt lại biến flag
-            if (nextMoveByComputer)
+            }
+            if (!check && nextMoveByComputer )
             {
                 MakeComputerMove();
                 
             }
+            
         }
         private bool GameOver()
         {
@@ -513,6 +525,15 @@ namespace WindowsFormsApp2
         {
             player2.setTimeEnd(player2.timeEnd - 1);
         }
-        
+
+        private void vbButton1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.Close();
+            main m = new main(stG);
+            m.ShowDialog();
+            m = null;
+            this.Show();
+        }
     }
 }

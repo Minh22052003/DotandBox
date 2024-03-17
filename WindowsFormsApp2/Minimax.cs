@@ -20,9 +20,9 @@ namespace WindowsFormsApp2
         public int startY; // Tọa độ y ban đầu
         public int spacing; // Khoảng cách giữa các điểm
         public int size;//Size trò chơi
-        public int Depth = 5;//Độ sâu duyệt minimax(Số càng cao càng khó nhưng cũng mất nhiều thời gian hơn)
+        public int Depth;//Độ sâu duyệt minimax(Số càng cao càng khó nhưng cũng mất nhiều thời gian hơn)
 
-        public Minimax(Board board, int StartX, int StartY, int Spacing, int size)
+        public Minimax(Board board, int StartX, int StartY, int Spacing, int size, int Depth)
         {
             this.board = board;
             lines = board.lines;
@@ -32,6 +32,7 @@ namespace WindowsFormsApp2
             startY = StartY;
             spacing = Spacing;
             this.size = size;
+            this.Depth = Depth;
         }
 
         private int TinhDiem(Lines line)
