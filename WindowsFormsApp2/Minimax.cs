@@ -35,7 +35,7 @@ namespace WindowsFormsApp2
             this.Depth = Depth;
         }
 
-        private int TinhDiem(Lines line)
+        private int Scoring(Lines line)
         {
             int SoDiem = 0;
             //Kiem tra truong hop nam sat canh ben trai
@@ -343,15 +343,13 @@ namespace WindowsFormsApp2
                 {
                     // Thực hiện nước đi
                     MakeMove(move);
-                    if (TinhDiem(move) != 0)
+                    if (Scoring(move) != 0)
                     {
-                        scoreAI += TinhDiem(move);
-                        // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
+                        scoreAI += Scoring(move);
                         currentScore = MinimaxAlgorithm(anpha,beta,depth - 1, true);
                     }
                     else
                     {
-                        // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
                         currentScore = MinimaxAlgorithm(anpha, beta, depth - 1, false);
                     }
 
@@ -359,9 +357,9 @@ namespace WindowsFormsApp2
 
                     // Hủy bỏ nước đi
                     UndoMove(move);
-                    if (TinhDiem(move) != 0)
+                    if (Scoring(move) != 0)
                     {
-                        scoreAI -= TinhDiem(move);
+                        scoreAI -= Scoring(move);
                     }
                     //CẮT TỈA
                     // B1:
@@ -385,15 +383,13 @@ namespace WindowsFormsApp2
                 {
                     // Thực hiện nước đi
                     MakeMove(move);
-                    if (TinhDiem(move) != 0)
+                    if (Scoring(move) != 0)
                     {
-                        scorePL += TinhDiem(move);
-                        // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
+                        scorePL += Scoring(move);
                         currentScore = MinimaxAlgorithm(anpha, beta, depth - 1, false);
                     }
                     else
                     {
-                        // Gọi đệ quy để tính toán điểm số cho nước đi tiếp theo
                         currentScore = MinimaxAlgorithm(anpha, beta, depth - 1, true);
                     }
 
@@ -401,9 +397,9 @@ namespace WindowsFormsApp2
 
                     // Hủy bỏ nước đi
                     UndoMove(move);
-                    if (TinhDiem(move) != 0)
+                    if (Scoring(move) != 0)
                     {
-                        scorePL -= TinhDiem(move);
+                        scorePL -= Scoring(move);
                     }
 
                     // B1:
@@ -481,9 +477,9 @@ namespace WindowsFormsApp2
             {
                 // Thực hiện nước đi
                 MakeMove(move);
-                if (TinhDiem(move) != 0)
+                if (Scoring(move) != 0)
                 {
-                    scoreAI += TinhDiem(move);
+                    scoreAI += Scoring(move);
                     currentScore = MinimaxAlgorithm(anpha, beta, Depth, true);
                 }
                 else
@@ -492,9 +488,9 @@ namespace WindowsFormsApp2
                 }
 
                 UndoMove(move);
-                if (TinhDiem(move) != 0)
+                if (Scoring(move) != 0)
                 {
-                    scoreAI -= TinhDiem(move);
+                    scoreAI -= Scoring(move);
                 }
 
                 if (currentScore > bestScore)

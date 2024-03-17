@@ -64,6 +64,7 @@ namespace WindowsFormsApp2
             else
             {
                 AssignClickEvents();
+                returnEnd();
             }
 		}
         public Board board;
@@ -118,9 +119,25 @@ namespace WindowsFormsApp2
                                 timeE1.Text = player1.timeEnd.ToString();
                                 Invalidate();
                             }
+                            if (GameOver())
+                            {
+                                if (player1.Score > player2.Score)
+                                {
+                                    MessageBox.Show("Player 1 Win");
+                                }
+                                else if (player2.Score > player1.Score)
+                                {
+                                    MessageBox.Show("Player 2 Win");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No Player Win");
+                                }
+                            }
                         }
                     };
                 }
+                
             }
 
         }
@@ -170,6 +187,7 @@ namespace WindowsFormsApp2
             {
                 MakeComputerMove();
             }
+            returnEnd();
             Invalidate();
         }
 
@@ -492,6 +510,7 @@ namespace WindowsFormsApp2
                 
 
             }
+            returnEnd();
             if (!check && nextMoveByComputer )
             {
                 MakeComputerMove();
@@ -509,6 +528,26 @@ namespace WindowsFormsApp2
                 }
             }
             return true;
+        }
+
+        private void returnEnd()
+        {
+            if (GameOver())
+            {
+                if (player1.Score > player2.Score)
+                {
+                    MessageBox.Show("Player 1 Win");
+                }
+                else if (player2.Score > player1.Score)
+                {
+                    MessageBox.Show("Player 2 Win");
+                }
+                else
+                {
+                    MessageBox.Show("No Player Win");
+                }
+
+            }
         }
 
         private void Click_Exit(object sender, EventArgs e)
