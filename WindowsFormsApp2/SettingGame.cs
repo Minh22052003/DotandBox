@@ -10,7 +10,7 @@ namespace WindowsFormsApp2
     {
         public int startX = 150; // Tọa độ x ban đầu
         public int startY = 110; // Tọa độ y ban đầu
-        public int length = 280; // Khoảng cách giữa các điểm
+        public int length = 280; // Kích thước ma trận trò chơi
         public int size = 3;//Size trò chơi
         //Tên người chơi một
         public string NamePL1 { get; set; } = "Player1";
