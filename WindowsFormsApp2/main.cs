@@ -18,6 +18,10 @@ namespace WindowsFormsApp2
 		private List<Lines> lines = new List<Lines>();
         public Player player1 = new Player();
         public Player player2 = new Player();
+        public Board board;
+        public Minimax mnm;
+        public bool checkEnd=false;
+        private bool nextMoveByComputer = false;
         public int startX; // Tọa độ x ban đầu
         public int startY; // Tọa độ y ban đầu
         public int spacing; // Khoảng cách giữa các điểm
@@ -67,9 +71,6 @@ namespace WindowsFormsApp2
                 returnEnd();
             }
 		}
-        public Board board;
-        public Minimax mnm;
-        private bool nextMoveByComputer = false;
         private void AssignClickEvents()
         {
             if (stG.mode== "PVP")
@@ -481,7 +482,7 @@ namespace WindowsFormsApp2
 			// Vẽ các đường nối
 			foreach (var line in lines)
 			{
-                Pen pen = new Pen(line.Color);
+                Pen pen = new Pen(line.Color,3);
                 pen.DashStyle=line.dashStyle;
 				e.Graphics.DrawLine(pen, line.Point1, line.Point2);
 				pen.Dispose();
@@ -532,19 +533,22 @@ namespace WindowsFormsApp2
 
         private void returnEnd()
         {
-            if (GameOver())
+            if (GameOver()&& !checkEnd)
             {
                 if (player1.Score > player2.Score)
                 {
                     MessageBox.Show("Player 1 Win");
+                    checkEnd = true;
                 }
                 else if (player2.Score > player1.Score)
                 {
                     MessageBox.Show("Player 2 Win");
+                    checkEnd = true;
                 }
                 else
                 {
                     MessageBox.Show("No Player Win");
+                    checkEnd = true;
                 }
 
             }
