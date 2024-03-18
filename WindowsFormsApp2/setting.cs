@@ -13,9 +13,11 @@ namespace WindowsFormsApp2
 	public partial class setting : Form
 	{
         public SettingGame stG = new SettingGame();
-		public setting(SettingGame settingGame)
+        public start ST = new start();
+		public setting(start st)
 		{
-            stG = settingGame;
+            ST = st;
+            stG = st.settingGame;
 			InitializeComponent();
             //name
             txtName1.Text = stG.NamePL1;
@@ -75,21 +77,55 @@ namespace WindowsFormsApp2
         {
             if (rbpvp.Checked)
             {
-                stG.mode = "PVP";
+                ST.settingGame.mode = "PVP";
             }
             else if(rbpve.Checked)
             {
-                stG.mode = "PVE";
+                ST.settingGame.mode = "PVE";
             }
-            MessageBox.Show(stG.mode);
         }
-
+        public void updateMode()
+        {
+            if (rbpvp.Checked)
+            {
+                ST.settingGame.mode = "PVP";
+            }
+            else if (rbpve.Checked)
+            {
+                ST.settingGame.mode = "PVE";
+            }
+        }
+        public void updateLevel()
+        {
+            if (rbea.Checked)
+            {
+                ST.settingGame.level = "Eazy";
+            }
+            else if (rbno.Checked)
+            {
+                ST.settingGame.level = "Normal";
+            }
+            else
+            {
+                ST.settingGame.level = "Hard";
+            }
+        }
+        public void updateName()
+        {
+            ST.settingGame.NamePL1 = txtName1.Text;
+            ST.settingGame.NamePL2 = txtName2.Text;
+        }
+        public void UpdateSetting()
+        {
+            updateLevel();
+            updateMode();
+            updateName();
+        }
         private void Apply_Click(object sender, EventArgs e)
         {
+            UpdateSetting();
+            ST.Show();
             this.Hide();
-            start s = new start(stG);
-            s.ShowDialog();
-            this.Show();
         }
     }
 }

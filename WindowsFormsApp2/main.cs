@@ -35,6 +35,8 @@ namespace WindowsFormsApp2
             startX = stG.startX;
             startY = stG.startY;
             spacing = stG.returnSpacing();
+            txtName1.Text = stG.NamePL1;
+            txtName2.Text = stG.NamePL2;
             size = stG.size;
             Depth = stG.returnDepth();
 
@@ -73,73 +75,57 @@ namespace WindowsFormsApp2
 		}
         private void AssignClickEvents()
         {
-            if (stG.mode== "PVP")
+            for (int i = 0; i < lines.Count; i++)
             {
-                for (int i = 0; i < lines.Count; i++)
+                lines[i].Click += (sender, args) =>
                 {
-                    lines[i].Click += (sender, args) =>
+                    if (!((Lines)sender).Check)
                     {
-                        if (!((Lines)sender).Check)
+                        if (player1.Turn == false)
                         {
-                            if (player1.Turn == false)
+                            ((Lines)sender).ChangeColor(Color.Blue);
+                            ((Lines)sender).ChangeDash(DashStyle.Solid);
+                            ((Lines)sender).Check = true;
+                            player1.setTurn(true);
+                            player2.setTurn(false);
+                            if (Scoring(((Lines)sender)) != 0)
                             {
-                                ((Lines)sender).ChangeColor(Color.Blue);
-                                ((Lines)sender).ChangeDash(DashStyle.Solid);
-                                ((Lines)sender).Check = true;
-                                player1.setTurn(true);
-                                player2.setTurn(false);
-                                if (Scoring(((Lines)sender)) != 0)
-                                {
-                                    player1.setTurn(false);
-                                    player2.setTurn(true);
-                                    timer2.Stop();
-                                }
-                                player1.setScore(Scoring(((Lines)sender)));
-                                Score1.Text = player1.Score.ToString();
-                                timer2.Start();
-                                timeE2.Text = player2.timeEnd.ToString();
-                                Invalidate();
-                            }
-                            else if (player2.Turn == false)
-                            {
-                                ((Lines)sender).ChangeColor(Color.Red);
-                                ((Lines)sender).ChangeDash(DashStyle.Solid);
-                                ((Lines)sender).Check = true;
-                                player2.setTurn(true);
                                 player1.setTurn(false);
-                                
-                                if (Scoring(((Lines)sender)) != 0)
-                                {
-                                    player2.setTurn(false);
-                                    player1.setTurn(true);
-                                    timer1.Stop();
-                                }
-                                player2.setScore(Scoring(((Lines)sender)));
-                                Score2.Text = player2.Score.ToString();
-                                timer1.Start();
-                                timeE1.Text = player1.timeEnd.ToString();
-                                Invalidate();
+                                player2.setTurn(true);
+                                timer2.Stop();
                             }
-                            if (GameOver())
-                            {
-                                if (player1.Score > player2.Score)
-                                {
-                                    MessageBox.Show("Player 1 Win");
-                                }
-                                else if (player2.Score > player1.Score)
-                                {
-                                    MessageBox.Show("Player 2 Win");
-                                }
-                                else
-                                {
-                                    MessageBox.Show("No Player Win");
-                                }
-                            }
+                            player1.setScore(Scoring(((Lines)sender)));
+                            Score1.Text = player1.Score.ToString();
+                            timer2.Start();
+                            timeE2.Text = player2.timeEnd.ToString();
+                            Invalidate();
                         }
-                    };
-                }
-                
+                        else if (player2.Turn == false)
+                        {
+                            ((Lines)sender).ChangeColor(Color.Red);
+                            ((Lines)sender).ChangeDash(DashStyle.Solid);
+                            ((Lines)sender).Check = true;
+                            player2.setTurn(true);
+                            player1.setTurn(false);
+                                
+                            if (Scoring(((Lines)sender)) != 0)
+                            {
+                                player2.setTurn(false);
+                                player1.setTurn(true);
+                                timer1.Stop();
+                            }
+                            player2.setScore(Scoring(((Lines)sender)));
+                            Score2.Text = player2.Score.ToString();
+                            timer1.Start();
+                            timeE1.Text = player1.timeEnd.ToString();
+                            Invalidate();
+                        }
+                        returnEnd();
+                    }
+                };
             }
+                
+            
 
         }
 
@@ -158,8 +144,6 @@ namespace WindowsFormsApp2
                 }
                 player1.setScore(Scoring(clickedLine));
                 Score1.Text = player1.Score.ToString();
-                Invalidate();
-                    
             }
         }
 
@@ -188,8 +172,8 @@ namespace WindowsFormsApp2
             {
                 MakeComputerMove();
             }
-            returnEnd();
             Invalidate();
+            returnEnd();
         }
 
 
@@ -497,6 +481,7 @@ namespace WindowsFormsApp2
         {
             base.OnMouseDown(e);
             bool check = false;
+            bool checkAI = false;
             // Kiểm tra xem có điểm nào được click trong các đường nối không
             foreach (var line in lines)
             {
@@ -506,14 +491,20 @@ namespace WindowsFormsApp2
                     {
                         check = true;
                     }
+                    else
+                    {
+                        checkAI = true;
+                    }
                 }
                 line.HandleClick(e.Location);
-                
+
 
             }
+            Invalidate();
             returnEnd();
-            if (!check && nextMoveByComputer )
+            if (!check && nextMoveByComputer && checkAI)
             {
+                checkAI = false;
                 MakeComputerMove();
                 
             }

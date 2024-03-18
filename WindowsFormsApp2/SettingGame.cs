@@ -19,7 +19,7 @@ namespace WindowsFormsApp2
         //Chế độ chơi
         public string mode { get; set; } = "PVE";
         //Độ khó
-        public string level { get; set; } = "Normal";
+        public string level { get; set; } = "Eazy";
         //Thời gian tối đa để chơi 
         public string time { get; set; } = "5 minute";
         public SettingGame(){}
@@ -29,15 +29,15 @@ namespace WindowsFormsApp2
             int l = 0;
             if (level == "Eazy")
             {
-                l= 2;
+                l= 1;
             }
             else if (level == "Normal")
             {
-                l= 4;
+                l= 3;
             }
             else if (level == "Hard")
             {
-                l= 6;
+                l= 5;
             }
             return l;
         }

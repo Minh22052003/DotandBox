@@ -33,10 +33,10 @@ namespace WindowsFormsApp2
 
 		private void Click_Setting(object sender, EventArgs e)
 		{
-			setting st = new setting(settingGame);
+			setting st = new setting(this);
+			this.Hide();
 			st.ShowDialog();
 			st = null;
-			this.Show();
 		}
 	}
 }

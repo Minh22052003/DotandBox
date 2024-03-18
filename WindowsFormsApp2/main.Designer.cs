@@ -29,8 +29,8 @@
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txtName1 = new System.Windows.Forms.Label();
+            this.txtName2 = new System.Windows.Forms.Label();
             this.Score1 = new System.Windows.Forms.Label();
             this.Score2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -42,25 +42,25 @@
             this.vbButton1 = new CustomButton.VBButton();
             this.SuspendLayout();
             // 
-            // label1
+            // txtName1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 125);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 32);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Player 1:";
+            this.txtName1.AutoSize = true;
+            this.txtName1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName1.Location = new System.Drawing.Point(12, 125);
+            this.txtName1.Name = "txtName1";
+            this.txtName1.Size = new System.Drawing.Size(126, 32);
+            this.txtName1.TabIndex = 10;
+            this.txtName1.Text = "Player 1:";
             // 
-            // label2
+            // txtName2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(612, 126);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 32);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Player 2:";
+            this.txtName2.AutoSize = true;
+            this.txtName2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName2.Location = new System.Drawing.Point(612, 126);
+            this.txtName2.Name = "txtName2";
+            this.txtName2.Size = new System.Drawing.Size(126, 32);
+            this.txtName2.TabIndex = 11;
+            this.txtName2.Text = "Player 2:";
             // 
             // Score1
             // 
@@ -180,8 +180,8 @@
             this.Controls.Add(this.timeE1);
             this.Controls.Add(this.Score2);
             this.Controls.Add(this.Score1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtName2);
+            this.Controls.Add(this.txtName1);
             this.Controls.Add(this.vbButton3);
             this.Controls.Add(this.vbButton2);
             this.Controls.Add(this.vbButton1);
@@ -196,8 +196,8 @@
 		private CustomButton.VBButton vbButton1;
 		private CustomButton.VBButton vbButton2;
 		private CustomButton.VBButton vbButton3;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label txtName1;
+		private System.Windows.Forms.Label txtName2;
 		private System.Windows.Forms.Label Score1;
 		private System.Windows.Forms.Label Score2;
         private System.Windows.Forms.Timer timer1;
