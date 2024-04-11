@@ -54,7 +54,7 @@ namespace WindowsFormsApp2
         private bool IsClicked(Point point)
 		{
 			double distance = DistanceToPoint(Point1, Point2, point);
-			return distance < 5;
+			return distance < 10;
 		}
 
 		// Thay đổi màu của đường nối

@@ -27,6 +27,7 @@ namespace WindowsFormsApp2
         public int spacing; // Khoảng cách giữa các điểm
         public int size;//Size trò chơi
         public int Depth;//Độ sâu minimax
+        private Timer countdownTimer;
         public main(SettingGame stg)
 		{
 			InitializeComponent();
@@ -39,6 +40,15 @@ namespace WindowsFormsApp2
             txtName2.Text = stG.NamePL2;
             size = stG.size;
             Depth = stG.returnDepth();
+
+            countdownTimer = new Timer();
+            countdownTimer.Interval = 1000; // Interval là mili giây, 1000 mili giây = 1 giây
+
+            // Liên kết sự kiện Tick của Timer với hàm CountdownTimer_Tick
+            countdownTimer.Tick += CountdownTimer_Tick;
+
+            // Bắt đầu đếm ngược
+            countdownTimer.Start();
 
             for (int i = 0; i < size+1; i++)
 			{
@@ -69,6 +79,10 @@ namespace WindowsFormsApp2
             }
             else
             {
+                Time1.Visible = true;
+                Time2.Visible = true;
+                timeE1.Visible = true;
+                timeE2.Visible = true;
                 AssignClickEvents();
                 returnEnd();
             }
@@ -134,16 +148,55 @@ namespace WindowsFormsApp2
             Lines clickedLine = (Lines)sender;
             if (!clickedLine.Check)
             {
+                // Kiểm tra người chơi hiện tại là ai để dừng thời gian của họ
+                if (player1.Turn)
+                {
+                    timer1.Stop(); // Dừng thời gian của người chơi 1
+                }
+                else if (player2.Turn)
+                {
+                    timer2.Stop(); // Dừng thời gian của người chơi 2
+                }
+
                 clickedLine.ChangeColor(Color.Blue);
                 clickedLine.ChangeDash(DashStyle.Solid);
                 clickedLine.Check = true;
                 nextMoveByComputer = true;
+
+                // Kiểm tra xem điểm của đường vừa đánh
                 if (Scoring(clickedLine) != 0)
                 {
                     nextMoveByComputer = false;
                 }
-                player1.setScore(Scoring(clickedLine));
-                Score1.Text = player1.Score.ToString();
+
+                // Cập nhật điểm số và hiển thị lên giao diện
+                if (player1.Turn)
+                {
+                    player1.setScore(Scoring(clickedLine));
+                    Score1.Text = player1.Score.ToString();
+                }
+                else if (player2.Turn)
+                {
+                    player2.setScore(Scoring(clickedLine));
+                    Score2.Text = player2.Score.ToString();
+                }
+
+                // Đổi lượt chơi
+                player1.setTurn(!player1.Turn);
+                player2.setTurn(!player2.Turn);
+
+                // Bắt đầu lại thời gian của người chơi mới
+                if (player1.Turn)
+                {
+                    timer1.Start(); // Bắt đầu thời gian của người chơi 1
+                }
+                else if (player2.Turn)
+                {
+                    timer2.Start(); // Bắt đầu thời gian của người chơi 2
+                }
+
+                // Kiểm tra điều kiện kết thúc trò chơi
+                returnEnd();
             }
         }
 
@@ -550,14 +603,30 @@ namespace WindowsFormsApp2
 			this.Close();
 		}
 
-        private void timer1_Tick(object sender, EventArgs e)
+        // Thêm hàm giảm thời gian đếm ngược
+        private void CountdownTimer_Tick(object sender, EventArgs e)
         {
-            player1.setTimeEnd(player1.timeEnd-1);
-        }
+            // Giảm thời gian của người chơi 1
+            player1.setTimeEnd(player1.timeEnd - 1);
+            timeE1.Text = player1.timeEnd.ToString();
 
-        private void timer2_Tick(object sender, EventArgs e)
-        {
+            // Giảm thời gian của người chơi 2
             player2.setTimeEnd(player2.timeEnd - 1);
+            timeE2.Text = player2.timeEnd.ToString();
+
+            // Kiểm tra xem thời gian của bất kỳ người chơi nào đã hết chưa
+            if (player1.timeEnd == 0 || player2.timeEnd == 0)
+            {
+                // Dừng hàm đếm ngược
+                countdownTimer.Stop();
+
+                // Hiển thị thông báo thời gian đã hết
+                MessageBox.Show("Time's up!");
+            }
+        }
+        private void StartCountdown()
+        {
+            countdownTimer.Start();
         }
 
         private void vbButton1_Click(object sender, EventArgs e)
@@ -568,6 +637,11 @@ namespace WindowsFormsApp2
             m.ShowDialog();
             m = null;
             this.Show();
+        }
+
+        private void main_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

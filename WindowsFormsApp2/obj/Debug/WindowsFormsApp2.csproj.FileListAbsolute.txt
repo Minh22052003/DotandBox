@@ -20,3 +20,4 @@ D:\TTNT\BTL\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
 D:\TTNT\BTL\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.main.resources
 D:\TTNT\BTL\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.start.resources
 D:\TTNT\BTL\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.setting.resources
+D:\TTNT\BTL\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.about.resources

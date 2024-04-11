@@ -43,9 +43,9 @@
             this.rb3 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rbea = new System.Windows.Forms.RadioButton();
-            this.rbno = new System.Windows.Forms.RadioButton();
             this.rbha = new System.Windows.Forms.RadioButton();
+            this.rbno = new System.Windows.Forms.RadioButton();
+            this.rbea = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -209,15 +209,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Game Level";
             // 
-            // rbea
+            // rbha
             // 
-            this.rbea.AutoSize = true;
-            this.rbea.Location = new System.Drawing.Point(18, 30);
-            this.rbea.Name = "rbea";
-            this.rbea.Size = new System.Drawing.Size(81, 29);
-            this.rbea.TabIndex = 0;
-            this.rbea.Text = "Eazy";
-            this.rbea.UseVisualStyleBackColor = true;
+            this.rbha.AutoSize = true;
+            this.rbha.Location = new System.Drawing.Point(18, 139);
+            this.rbha.Name = "rbha";
+            this.rbha.Size = new System.Drawing.Size(79, 29);
+            this.rbha.TabIndex = 2;
+            this.rbha.Text = "Hard";
+            this.rbha.UseVisualStyleBackColor = true;
             // 
             // rbno
             // 
@@ -229,15 +229,15 @@
             this.rbno.Text = "Normal";
             this.rbno.UseVisualStyleBackColor = true;
             // 
-            // rbha
+            // rbea
             // 
-            this.rbha.AutoSize = true;
-            this.rbha.Location = new System.Drawing.Point(18, 139);
-            this.rbha.Name = "rbha";
-            this.rbha.Size = new System.Drawing.Size(79, 29);
-            this.rbha.TabIndex = 2;
-            this.rbha.Text = "Hard";
-            this.rbha.UseVisualStyleBackColor = true;
+            this.rbea.AutoSize = true;
+            this.rbea.Location = new System.Drawing.Point(18, 30);
+            this.rbea.Name = "rbea";
+            this.rbea.Size = new System.Drawing.Size(81, 29);
+            this.rbea.TabIndex = 0;
+            this.rbea.Text = "Eazy";
+            this.rbea.UseVisualStyleBackColor = true;
             // 
             // setting
             // 
@@ -251,6 +251,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "setting";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "setting";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);

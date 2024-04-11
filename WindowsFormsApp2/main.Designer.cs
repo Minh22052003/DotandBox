@@ -37,6 +37,8 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timeE1 = new System.Windows.Forms.Label();
             this.timeE2 = new System.Windows.Forms.Label();
+            this.Time1 = new System.Windows.Forms.Label();
+            this.Time2 = new System.Windows.Forms.Label();
             this.vbButton3 = new CustomButton.VBButton();
             this.vbButton2 = new CustomButton.VBButton();
             this.vbButton1 = new CustomButton.VBButton();
@@ -46,7 +48,8 @@
             // 
             this.txtName1.AutoSize = true;
             this.txtName1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName1.Location = new System.Drawing.Point(12, 125);
+            this.txtName1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.txtName1.Location = new System.Drawing.Point(191, 170);
             this.txtName1.Name = "txtName1";
             this.txtName1.Size = new System.Drawing.Size(126, 32);
             this.txtName1.TabIndex = 10;
@@ -56,7 +59,8 @@
             // 
             this.txtName2.AutoSize = true;
             this.txtName2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName2.Location = new System.Drawing.Point(612, 126);
+            this.txtName2.ForeColor = System.Drawing.Color.Red;
+            this.txtName2.Location = new System.Drawing.Point(855, 170);
             this.txtName2.Name = "txtName2";
             this.txtName2.Size = new System.Drawing.Size(126, 32);
             this.txtName2.TabIndex = 11;
@@ -66,7 +70,8 @@
             // 
             this.Score1.AutoSize = true;
             this.Score1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Score1.Location = new System.Drawing.Point(144, 125);
+            this.Score1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.Score1.Location = new System.Drawing.Point(323, 170);
             this.Score1.Name = "Score1";
             this.Score1.Size = new System.Drawing.Size(30, 32);
             this.Score1.TabIndex = 12;
@@ -76,41 +81,60 @@
             // 
             this.Score2.AutoSize = true;
             this.Score2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Score2.Location = new System.Drawing.Point(744, 126);
+            this.Score2.ForeColor = System.Drawing.Color.Red;
+            this.Score2.Location = new System.Drawing.Point(987, 170);
             this.Score2.Name = "Score2";
             this.Score2.Size = new System.Drawing.Size(30, 32);
             this.Score2.TabIndex = 13;
             this.Score2.Text = "0";
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Interval = 1000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
+
+        
             // timeE1
             // 
             this.timeE1.AutoSize = true;
             this.timeE1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeE1.Location = new System.Drawing.Point(45, 185);
+            this.timeE1.Location = new System.Drawing.Point(274, 230);
             this.timeE1.Name = "timeE1";
             this.timeE1.Size = new System.Drawing.Size(43, 22);
             this.timeE1.TabIndex = 14;
             this.timeE1.Text = "300";
+            this.timeE1.Visible = false;
             // 
             // timeE2
             // 
             this.timeE2.AutoSize = true;
             this.timeE2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeE2.Location = new System.Drawing.Point(665, 191);
+            this.timeE2.Location = new System.Drawing.Point(938, 238);
             this.timeE2.Name = "timeE2";
             this.timeE2.Size = new System.Drawing.Size(43, 22);
             this.timeE2.TabIndex = 15;
             this.timeE2.Text = "300";
+            this.timeE2.Visible = false;
+            // 
+            // Time1
+            // 
+            this.Time1.AutoSize = true;
+            this.Time1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Time1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.Time1.Location = new System.Drawing.Point(191, 222);
+            this.Time1.Name = "Time1";
+            this.Time1.Size = new System.Drawing.Size(85, 32);
+            this.Time1.TabIndex = 16;
+            this.Time1.Text = "Time:";
+            this.Time1.Visible = false;
+            // 
+            // Time2
+            // 
+            this.Time2.AutoSize = true;
+            this.Time2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Time2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.Time2.Location = new System.Drawing.Point(855, 230);
+            this.Time2.Name = "Time2";
+            this.Time2.Size = new System.Drawing.Size(85, 32);
+            this.Time2.TabIndex = 17;
+            this.Time2.Text = "Time:";
+            this.Time2.Visible = false;
             // 
             // vbButton3
             // 
@@ -123,7 +147,7 @@
             this.vbButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vbButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vbButton3.ForeColor = System.Drawing.Color.White;
-            this.vbButton3.Location = new System.Drawing.Point(517, 32);
+            this.vbButton3.Location = new System.Drawing.Point(714, 58);
             this.vbButton3.Name = "vbButton3";
             this.vbButton3.Size = new System.Drawing.Size(150, 53);
             this.vbButton3.TabIndex = 9;
@@ -143,7 +167,7 @@
             this.vbButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vbButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vbButton2.ForeColor = System.Drawing.Color.White;
-            this.vbButton2.Location = new System.Drawing.Point(309, 32);
+            this.vbButton2.Location = new System.Drawing.Point(506, 58);
             this.vbButton2.Name = "vbButton2";
             this.vbButton2.Size = new System.Drawing.Size(150, 54);
             this.vbButton2.TabIndex = 8;
@@ -162,7 +186,7 @@
             this.vbButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vbButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vbButton1.ForeColor = System.Drawing.Color.White;
-            this.vbButton1.Location = new System.Drawing.Point(99, 32);
+            this.vbButton1.Location = new System.Drawing.Point(296, 58);
             this.vbButton1.Name = "vbButton1";
             this.vbButton1.Size = new System.Drawing.Size(150, 53);
             this.vbButton1.TabIndex = 7;
@@ -175,7 +199,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 511);
+            this.ClientSize = new System.Drawing.Size(1178, 625);
+            this.Controls.Add(this.Time2);
+            this.Controls.Add(this.Time1);
             this.Controls.Add(this.timeE2);
             this.Controls.Add(this.timeE1);
             this.Controls.Add(this.Score2);
@@ -186,7 +212,9 @@
             this.Controls.Add(this.vbButton2);
             this.Controls.Add(this.vbButton1);
             this.Name = "main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,6 +232,8 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Label timeE1;
         private System.Windows.Forms.Label timeE2;
+        private System.Windows.Forms.Label Time1;
+        private System.Windows.Forms.Label Time2;
     }
 }
 
