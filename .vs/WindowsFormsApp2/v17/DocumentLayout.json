@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "D:\\TTNT\\BTL\\WindowsFormsApp2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|d:\\ttnt\\btl\\windowsformsapp2\\windowsformsapp2\\about.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\about.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|d:\\ttnt\\btl\\windowsformsapp2\\windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\about.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\about.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\settinggame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,14 +35,6 @@
       "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\setting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|D:\\TTNT\\BTL\\WindowsFormsApp2\\windowsformsapp2\\lines.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{658BE9AE-7279-4596-BE8A-C2D27F58BF8B}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\lines.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -46,17 +46,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "main.cs",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\main.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\main.cs",
               "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\main.cs",
               "RelativeToolTip": "WindowsFormsApp2\\main.cs",
-              "ViewState": "AQIAAJQAAAAAAAAAAAAowLsAAAAAAAAA",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAgwLsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-17T03:27:12.062Z",
               "IsPinned": true,
@@ -72,15 +72,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "about.cs [Design]",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\about.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\about.cs",
               "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\about.cs [Design]",
               "RelativeToolTip": "WindowsFormsApp2\\about.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T08:52:19.292Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-04-08T08:52:19.292Z"
             },
             {
               "$type": "Document",
@@ -90,24 +89,26 @@
               "RelativeDocumentMoniker": "WindowsFormsApp2\\start.cs",
               "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\start.cs",
               "RelativeToolTip": "WindowsFormsApp2\\start.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAADAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAlwCsAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T07:41:12.884Z"
+              "WhenOpened": "2024-03-18T07:41:12.884Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "start.cs [Design]",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\start.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\start.cs",
               "ToolTip": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\start.cs [Design]",
               "RelativeToolTip": "WindowsFormsApp2\\start.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T07:41:09.541Z"
+              "WhenOpened": "2024-03-18T07:41:09.541Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "setting.cs",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\setting.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\setting.cs",
@@ -119,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "setting.cs [Design]",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\setting.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\setting.cs",
@@ -130,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "SettingGame.cs",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\SettingGame.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\SettingGame.cs",
@@ -142,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "main.cs [Design]",
               "DocumentMoniker": "D:\\TTNT\\BTL\\WindowsFormsApp2\\WindowsFormsApp2\\main.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp2\\main.cs",
