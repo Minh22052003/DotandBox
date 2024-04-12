@@ -69,7 +69,7 @@ namespace WindowsFormsApp2
 					lines.Add(new Lines(point1, point2));
 				}
 			}
-            
+
             if (stG.mode != "PVP")
             {
                 foreach (var line in lines)
@@ -79,14 +79,10 @@ namespace WindowsFormsApp2
             }
             else
             {
-                Time1.Visible = true;
-                Time2.Visible = true;
-                timeE1.Visible = true;
-                timeE2.Visible = true;
                 AssignClickEvents();
                 returnEnd();
             }
-		}
+        }
         private void AssignClickEvents()
         {
             for (int i = 0; i < lines.Count; i++)
@@ -121,7 +117,7 @@ namespace WindowsFormsApp2
                             ((Lines)sender).Check = true;
                             player2.setTurn(true);
                             player1.setTurn(false);
-                                
+
                             if (Scoring(((Lines)sender)) != 0)
                             {
                                 player2.setTurn(false);
@@ -138,8 +134,8 @@ namespace WindowsFormsApp2
                     }
                 };
             }
-                
-            
+
+
 
         }
 
@@ -148,55 +144,16 @@ namespace WindowsFormsApp2
             Lines clickedLine = (Lines)sender;
             if (!clickedLine.Check)
             {
-                // Kiểm tra người chơi hiện tại là ai để dừng thời gian của họ
-                if (player1.Turn)
-                {
-                    timer1.Stop(); // Dừng thời gian của người chơi 1
-                }
-                else if (player2.Turn)
-                {
-                    timer2.Stop(); // Dừng thời gian của người chơi 2
-                }
-
                 clickedLine.ChangeColor(Color.Blue);
                 clickedLine.ChangeDash(DashStyle.Solid);
                 clickedLine.Check = true;
                 nextMoveByComputer = true;
-
-                // Kiểm tra xem điểm của đường vừa đánh
                 if (Scoring(clickedLine) != 0)
                 {
                     nextMoveByComputer = false;
                 }
-
-                // Cập nhật điểm số và hiển thị lên giao diện
-                if (player1.Turn)
-                {
-                    player1.setScore(Scoring(clickedLine));
-                    Score1.Text = player1.Score.ToString();
-                }
-                else if (player2.Turn)
-                {
-                    player2.setScore(Scoring(clickedLine));
-                    Score2.Text = player2.Score.ToString();
-                }
-
-                // Đổi lượt chơi
-                player1.setTurn(!player1.Turn);
-                player2.setTurn(!player2.Turn);
-
-                // Bắt đầu lại thời gian của người chơi mới
-                if (player1.Turn)
-                {
-                    timer1.Start(); // Bắt đầu thời gian của người chơi 1
-                }
-                else if (player2.Turn)
-                {
-                    timer2.Start(); // Bắt đầu thời gian của người chơi 2
-                }
-
-                // Kiểm tra điều kiện kết thúc trò chơi
-                returnEnd();
+                player1.setScore(Scoring(clickedLine));
+                Score1.Text = player1.Score.ToString();
             }
         }
 
@@ -204,7 +161,7 @@ namespace WindowsFormsApp2
         private void MakeComputerMove()
         {
             board = new Board(lines, int.Parse(Score2.Text), int.Parse(Score1.Text));
-            mnm = new Minimax(board, startX, startY, spacing, size,Depth);
+            mnm = new Minimax(board, startX, startY, spacing, size, Depth);
             Lines bestMove = mnm.GetBestMove();
             int bestMoveIndex = lines.FindIndex(line => line == bestMove);
             lines[bestMoveIndex].ChangeColor(Color.Red);
@@ -228,6 +185,7 @@ namespace WindowsFormsApp2
             Invalidate();
             returnEnd();
         }
+
 
 
         private int Scoring(Lines line)
