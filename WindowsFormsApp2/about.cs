@@ -21,5 +21,11 @@ namespace WindowsFormsApp2
 		{
 
 		}
+
+
+		private void vbButton2_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }
