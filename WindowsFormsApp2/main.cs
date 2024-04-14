@@ -172,7 +172,10 @@ namespace WindowsFormsApp2
             if (moveScore != 0 || GameOver())
             {
                 player2.setScore(moveScore);
-                Score2.Text = player2.Score.ToString();
+                // Sử dụng Invoke để cập nhật Score2 trên luồng giao diện chính
+                Invoke((MethodInvoker)delegate {
+                    Score2.Text = player2.Score.ToString();
+                });
             }
             else
             {
@@ -185,6 +188,7 @@ namespace WindowsFormsApp2
             Invalidate();
             returnEnd();
         }
+
 
 
 
@@ -487,40 +491,54 @@ namespace WindowsFormsApp2
 				e.Graphics.FillEllipse(Brushes.Black, line.Point2.X - circleRadius / 2, line.Point2.Y - circleRadius / 2, circleRadius, circleRadius);
 			}
 		}
-        
+        private bool isMakingMove = false;
+
+        private object lockObject = new object();
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
             bool check = false;
             bool checkAI = false;
-            // Kiểm tra xem có điểm nào được click trong các đường nối không
-            foreach (var line in lines)
+            lock (lockObject)
             {
-                if (line.HandleClick1(e.Location))
+                if (!isMakingMove)
                 {
-                    if (line.Check)
+                    foreach (var line in lines)
                     {
-                        check = true;
+                        if (line.HandleClick1(e.Location))
+                        {
+                            if (line.Check)
+                            {
+                                check = true;
+                            }
+                            else
+                            {
+                                checkAI = true;
+                            }
+                        }
+                        line.HandleClick(e.Location);
                     }
-                    else
+                    Invalidate();
+
+                    if (!check && nextMoveByComputer && checkAI)
                     {
-                        checkAI = true;
+                        isMakingMove = true;
+                        Task.Run(() =>
+                        {
+                            MakeComputerMove();
+                            lock (lockObject)
+                            {
+                                isMakingMove = false;
+                            }
+                        });
                     }
                 }
-                line.HandleClick(e.Location);
-
-
             }
-            Invalidate();
-            returnEnd();
-            if (!check && nextMoveByComputer && checkAI)
-            {
-                checkAI = false;
-                MakeComputerMove();
-                
-            }
-            
         }
+
+
+
         private bool GameOver()
         {
             foreach (var x in lines)
