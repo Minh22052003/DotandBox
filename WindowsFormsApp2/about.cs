@@ -16,5 +16,16 @@ namespace WindowsFormsApp2
 		{
 			InitializeComponent();
 		}
+
+		private void textBox1_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+
+		private void vbButton2_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

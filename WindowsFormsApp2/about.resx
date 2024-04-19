@@ -117,4 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Hai người chơi lần lượt nối các điểm của lưới bằng đoạn thẳng ngang hoặc dọc một cách tuần tự. 
+Mỗi đoạn thẳng nối hai điểm và chỉ được phép nối các điểm nằm kề nhau. 
+Khi một người chơi hoàn thành một hộp (tạo thành bốn đoạn thẳng để tạo thành một hình vuông), họ được tính một điểm và được chơi thêm một lượt. 
+Trò chơi kết thúc khi tất cả các ô đã được chiếm. Người chơi chiếm được nhiều hộp nhất sẽ thắng.
+
+</value>
+  </data>
 </root>

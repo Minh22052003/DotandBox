@@ -27,7 +27,6 @@ namespace WindowsFormsApp2
         public int spacing; // Khoảng cách giữa các điểm
         public int size;//Size trò chơi
         public int Depth;//Độ sâu minimax
-        private Timer countdownTimer;
         public main(SettingGame stg)
 		{
 			InitializeComponent();
@@ -40,15 +39,6 @@ namespace WindowsFormsApp2
             txtName2.Text = stG.NamePL2;
             size = stG.size;
             Depth = stG.returnDepth();
-
-            countdownTimer = new Timer();
-            countdownTimer.Interval = 1000; // Interval là mili giây, 1000 mili giây = 1 giây
-
-            // Liên kết sự kiện Tick của Timer với hàm CountdownTimer_Tick
-            countdownTimer.Tick += CountdownTimer_Tick;
-
-            // Bắt đầu đếm ngược
-            countdownTimer.Start();
 
             for (int i = 0; i < size+1; i++)
 			{
@@ -102,12 +92,9 @@ namespace WindowsFormsApp2
                             {
                                 player1.setTurn(false);
                                 player2.setTurn(true);
-                                timer2.Stop();
                             }
                             player1.setScore(Scoring(((Lines)sender)));
                             Score1.Text = player1.Score.ToString();
-                            timer2.Start();
-                            timeE2.Text = player2.timeEnd.ToString();
                             Invalidate();
                         }
                         else if (player2.Turn == false)
@@ -122,12 +109,9 @@ namespace WindowsFormsApp2
                             {
                                 player2.setTurn(false);
                                 player1.setTurn(true);
-                                timer1.Stop();
                             }
                             player2.setScore(Scoring(((Lines)sender)));
                             Score2.Text = player2.Score.ToString();
-                            timer1.Start();
-                            timeE1.Text = player1.timeEnd.ToString();
                             Invalidate();
                         }
                         returnEnd();
@@ -188,7 +172,6 @@ namespace WindowsFormsApp2
             Invalidate();
             returnEnd();
         }
-
 
 
 
@@ -491,9 +474,10 @@ namespace WindowsFormsApp2
 				e.Graphics.FillEllipse(Brushes.Black, line.Point2.X - circleRadius / 2, line.Point2.Y - circleRadius / 2, circleRadius, circleRadius);
 			}
 		}
-        private bool isMakingMove = false;
+
 
         private object lockObject = new object();
+        private bool isMakingMove = false;
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -535,10 +519,8 @@ namespace WindowsFormsApp2
                     }
                 }
             }
+            returnEnd();
         }
-
-
-
         private bool GameOver()
         {
             foreach (var x in lines)
@@ -579,32 +561,7 @@ namespace WindowsFormsApp2
 			this.Close();
 		}
 
-        // Thêm hàm giảm thời gian đếm ngược
-        private void CountdownTimer_Tick(object sender, EventArgs e)
-        {
-            // Giảm thời gian của người chơi 1
-            player1.setTimeEnd(player1.timeEnd - 1);
-            timeE1.Text = player1.timeEnd.ToString();
-
-            // Giảm thời gian của người chơi 2
-            player2.setTimeEnd(player2.timeEnd - 1);
-            timeE2.Text = player2.timeEnd.ToString();
-
-            // Kiểm tra xem thời gian của bất kỳ người chơi nào đã hết chưa
-            if (player1.timeEnd == 0 || player2.timeEnd == 0)
-            {
-                // Dừng hàm đếm ngược
-                countdownTimer.Stop();
-
-                // Hiển thị thông báo thời gian đã hết
-                MessageBox.Show("Time's up!");
-            }
-        }
-        private void StartCountdown()
-        {
-            countdownTimer.Start();
-        }
-
+        
         private void vbButton1_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -619,5 +576,11 @@ namespace WindowsFormsApp2
         {
 
         }
-    }
+
+		private void vbButton2_Click(object sender, EventArgs e)
+		{
+            about m = new about();
+			m.ShowDialog();
+		}
+	}
 }

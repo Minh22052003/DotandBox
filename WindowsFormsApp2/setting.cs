@@ -52,25 +52,24 @@ namespace WindowsFormsApp2
                 rbno.Checked = false;
                 rbha.Checked = true;
             }
-            //time
-            if (stG.time == "3 minute")
+            if(stG.size == 3)
             {
-                rb3.Checked = true;
+                rb10.Checked = true;
                 rb5.Checked = false;
-                rb10.Checked = false;
-            }
-            else if(stG.time == "5 minute")
-            {
                 rb3.Checked = false;
-                rb5.Checked = true;
+            }else if(stG.size == 4)
+            {
                 rb10.Checked = false;
+                rb5.Checked = false;
+                rb3.Checked = true;
             }
             else
             {
+                rb10.Checked = false;
+                rb5.Checked = true;
                 rb3.Checked = false;
-                rb5.Checked = false;
-                rb10.Checked = true;
             }
+           
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
@@ -115,11 +114,27 @@ namespace WindowsFormsApp2
             ST.settingGame.NamePL1 = txtName1.Text;
             ST.settingGame.NamePL2 = txtName2.Text;
         }
+        public void updateSize()
+        {
+            if (rb3.Checked)
+            {
+                ST.settingGame.size = 4;
+            }
+            else if (rb5.Checked)
+            {
+                ST.settingGame.size = 2;
+            }
+            else if (rb10.Checked)
+            {
+                ST.settingGame.size = 3;
+            }
+        }
         public void UpdateSetting()
         {
             updateLevel();
             updateMode();
             updateName();
+            updateSize();
         }
         private void Apply_Click(object sender, EventArgs e)
         {

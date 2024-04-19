@@ -63,9 +63,29 @@ namespace WindowsFormsApp2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blob {
+            get {
+                object obj = ResourceManager.GetObject("blob", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nensetting {
             get {
                 object obj = ResourceManager.GetObject("nensetting", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

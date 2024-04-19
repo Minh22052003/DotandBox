@@ -41,11 +41,8 @@ namespace WindowsFormsApp2
 
         private void Click_About(object sender, EventArgs e)
         {
-            this.Hide();
             about ab = new about();
             ab.ShowDialog();
-            ab = null;
-            this.Show();
         }
     }
 }

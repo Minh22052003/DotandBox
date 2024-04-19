@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtName2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,22 +45,11 @@
             this.rbha = new System.Windows.Forms.RadioButton();
             this.rbno = new System.Windows.Forms.RadioButton();
             this.rbea = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::WindowsFormsApp2.Properties.Resources.nensetting;
-            this.pictureBox1.Location = new System.Drawing.Point(0, -2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(828, 514);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
@@ -87,6 +75,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
             this.label2.Location = new System.Drawing.Point(17, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 25);
@@ -96,6 +85,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(17, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 25);
@@ -153,36 +143,36 @@
             this.groupBox4.Size = new System.Drawing.Size(185, 184);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Time";
+            this.groupBox4.Text = "Size";
             // 
             // rb10
             // 
             this.rb10.AutoSize = true;
-            this.rb10.Location = new System.Drawing.Point(36, 139);
+            this.rb10.Location = new System.Drawing.Point(36, 86);
             this.rb10.Name = "rb10";
-            this.rb10.Size = new System.Drawing.Size(127, 29);
+            this.rb10.Size = new System.Drawing.Size(80, 29);
             this.rb10.TabIndex = 2;
-            this.rb10.Text = "10 minute";
+            this.rb10.Text = "3 x 3";
             this.rb10.UseVisualStyleBackColor = true;
             // 
             // rb5
             // 
             this.rb5.AutoSize = true;
-            this.rb5.Location = new System.Drawing.Point(36, 86);
+            this.rb5.Location = new System.Drawing.Point(36, 30);
             this.rb5.Name = "rb5";
-            this.rb5.Size = new System.Drawing.Size(115, 29);
+            this.rb5.Size = new System.Drawing.Size(80, 29);
             this.rb5.TabIndex = 1;
-            this.rb5.Text = "5 minute";
+            this.rb5.Text = "2 x 2";
             this.rb5.UseVisualStyleBackColor = true;
             // 
             // rb3
             // 
             this.rb3.AutoSize = true;
-            this.rb3.Location = new System.Drawing.Point(36, 30);
+            this.rb3.Location = new System.Drawing.Point(36, 139);
             this.rb3.Name = "rb3";
-            this.rb3.Size = new System.Drawing.Size(115, 29);
+            this.rb3.Size = new System.Drawing.Size(80, 29);
             this.rb3.TabIndex = 0;
-            this.rb3.Text = "3 minute";
+            this.rb3.Text = "4 x 4";
             this.rb3.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -243,17 +233,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(824, 511);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.pictureBox1);
             this.Name = "setting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "setting";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -267,8 +256,6 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox txtName1;

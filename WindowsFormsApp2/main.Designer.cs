@@ -35,10 +35,6 @@
             this.Score2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timeE1 = new System.Windows.Forms.Label();
-            this.timeE2 = new System.Windows.Forms.Label();
-            this.Time1 = new System.Windows.Forms.Label();
-            this.Time2 = new System.Windows.Forms.Label();
             this.vbButton3 = new CustomButton.VBButton();
             this.vbButton2 = new CustomButton.VBButton();
             this.vbButton1 = new CustomButton.VBButton();
@@ -88,54 +84,6 @@
             this.Score2.TabIndex = 13;
             this.Score2.Text = "0";
             // 
-
-        
-            // timeE1
-            // 
-            this.timeE1.AutoSize = true;
-            this.timeE1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeE1.Location = new System.Drawing.Point(274, 230);
-            this.timeE1.Name = "timeE1";
-            this.timeE1.Size = new System.Drawing.Size(43, 22);
-            this.timeE1.TabIndex = 14;
-            this.timeE1.Text = "300";
-            this.timeE1.Visible = false;
-            // 
-            // timeE2
-            // 
-            this.timeE2.AutoSize = true;
-            this.timeE2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeE2.Location = new System.Drawing.Point(938, 238);
-            this.timeE2.Name = "timeE2";
-            this.timeE2.Size = new System.Drawing.Size(43, 22);
-            this.timeE2.TabIndex = 15;
-            this.timeE2.Text = "300";
-            this.timeE2.Visible = false;
-            // 
-            // Time1
-            // 
-            this.Time1.AutoSize = true;
-            this.Time1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Time1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.Time1.Location = new System.Drawing.Point(191, 222);
-            this.Time1.Name = "Time1";
-            this.Time1.Size = new System.Drawing.Size(85, 32);
-            this.Time1.TabIndex = 16;
-            this.Time1.Text = "Time:";
-            this.Time1.Visible = false;
-            // 
-            // Time2
-            // 
-            this.Time2.AutoSize = true;
-            this.Time2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Time2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.Time2.Location = new System.Drawing.Point(855, 230);
-            this.Time2.Name = "Time2";
-            this.Time2.Size = new System.Drawing.Size(85, 32);
-            this.Time2.TabIndex = 17;
-            this.Time2.Text = "Time:";
-            this.Time2.Visible = false;
-            // 
             // vbButton3
             // 
             this.vbButton3.BackColor = System.Drawing.Color.DarkSlateGray;
@@ -174,6 +122,7 @@
             this.vbButton2.Text = "About";
             this.vbButton2.TextColor = System.Drawing.Color.White;
             this.vbButton2.UseVisualStyleBackColor = false;
+            this.vbButton2.Click += new System.EventHandler(this.vbButton2_Click);
             // 
             // vbButton1
             // 
@@ -200,10 +149,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1178, 625);
-            this.Controls.Add(this.Time2);
-            this.Controls.Add(this.Time1);
-            this.Controls.Add(this.timeE2);
-            this.Controls.Add(this.timeE1);
             this.Controls.Add(this.Score2);
             this.Controls.Add(this.Score1);
             this.Controls.Add(this.txtName2);
@@ -230,10 +175,6 @@
 		private System.Windows.Forms.Label Score2;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Label timeE1;
-        private System.Windows.Forms.Label timeE2;
-        private System.Windows.Forms.Label Time1;
-        private System.Windows.Forms.Label Time2;
     }
 }
 
